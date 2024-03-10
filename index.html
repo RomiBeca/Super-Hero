@@ -12,6 +12,7 @@
 </head>
 
 <body>
+
     <header>
         <nav class="navbar navbar-expand-lg bg-dark navbar-dark mb-5">
             <div class="container-fluid">
@@ -23,41 +24,61 @@
             </div>
         </nav>
     </header>
+
     <main>
         <section class="container">
-
-            <div class="row justify-content-center">
-                <img src="./assets/img/sh1.jpg" alt="imagen super hero" class="mb-5 col-6 img-fluid ">
-            </div>
-
-            <div class="row  ">
-                <div id="card"></div>
-                <div class=" col-12  text-center">
-                    <form id="formularioBusquedaS" class="mb-5">
-                        <div class="form-group">
-                            <div class="text-center">
-                                <label for="busqueda">Introduce tu búsqueda por ID:</label>
-                            </div>
-                            <div class="col-12 col-sm-6 offset-sm-3 text-center">
-                                <input id="busqueda" class="form-control" type="text" name="superHeroes"
-                                    placeholder=" 1 al 731">
-                            </div>
-                        </div>
-                        <button id="buscarSH" class="btn btn-danger" type="submit">Buscar</button>
-                    </form>
+            <!-- estructura base de la pag /con formulario-->
+            <article>
+                <div class="row justify-content-center">
+                    <img src="./assets/img/sh1.jpg" alt="imagen super hero" class="mb-5 col-6 img-fluid ">
                 </div>
-            </div>
+                <div class="row">
+                    <div class=" col-12 text-center">
+                        <form id="formSearchSH" class="mb-5">
+                            <div class="form-group">
+                                <div class="text-center">
+                                    <label for="busqueda" class="fw-bold">Introduce tu búsqueda de Super Heroe por N°
+                                        ID:</label>
+                                </div>
+                                <div class="col-12 col-sm-6 offset-sm-3 text-center">
+                                    <input id="inputSH" class="form-control" type="text" name="superHeroes"
+                                        placeholder=" 1 al 731">
+                                </div>
+                            </div>
+                            <button class="btn btn-danger fw-bold" type="submit">Buscar</button>
+
+                        </form>
+                    </div>
+                </div>
+            </article>
+            <!-- card y  grafico -->
+            <article class="row ">
+                <!-- card  -->
+                <div class="col-12 col-md-6">
+                    <div id="card">
+                        <div class="card mb-3" style="max-width: 1000px;">
+                            <div id="cards" class="row g-0 overflow-visible"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- grafico Torta -->
+                <div class="col-12 col-md-6 ">
+                    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+                </div>
+            </article>
         </section>
     </main>
-    <footer>
+    <footer class="container-fluid bg-dark">
+        <div class="text-light text-center">Super Hero</div>
     </footer>
     <!-- cdn canvasjs -->
-    <script src="https://cdn.canvasjs.com/ga/canvasjs.min.js"></script>
+    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
     <!-- CDN jquery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <!-- js propio -->
     <script src="./assets/js/app.js"></script>
+
 </body>
 
 </html>
