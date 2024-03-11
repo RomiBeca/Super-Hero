@@ -5,6 +5,8 @@ $(function () {
     const inputSH = $("#inputSH")
     //card
     const cards = $("#cards")
+
+
     //formulario e input
     formSearchSH.submit(function (event) {
         event.preventDefault();
@@ -21,9 +23,18 @@ $(function () {
                 method: "GET",
 
                 success(dataSuperHero) {
-                    console.log(dataSuperHero),
-                        //card
-                        cards.html(`
+
+                    const inteligencia = dataSuperHero.powerstats.intelligence !== "null" ? dataSuperHero.powerstats.intelligence : 0
+                    const fuerza = dataSuperHero.powerstats.strength !== "null" ? dataSuperHero.powerstats.strength : 0
+                    const velocidad = dataSuperHero.powerstats.speed !== "null" ? dataSuperHero.powerstats.speed : 0
+                    const resistencia = dataSuperHero.powerstats.durability !== "null" ? dataSuperHero.powerstats.durability : 0
+                    const poder = dataSuperHero.powerstats.power !== "null" ? dataSuperHero.powerstats.power : 0
+                    const combate = dataSuperHero.powerstats.combat !== "null" ? dataSuperHero.powerstats.combat : 0
+
+
+
+                    //card
+                    cards.html(`
                         <div class="col-12 col-md-6">
                             <img src="${dataSuperHero.image.url}" class="img-fluid rounded-start w-100" alt="superHeroImage">
                         </div>
@@ -52,12 +63,12 @@ $(function () {
                                     </ul> 
                                 <p class="fw-bold" >PowerStats:</p>
                                     <ul>
-                                        <li>Intelligence: ${dataSuperHero.powerstats.intelligence}</li>
-                                        <li>Strength: ${dataSuperHero.powerstats.strength}</li>                           
-                                        <li>speed: ${dataSuperHero.powerstats.speed}</li>                           
-                                        <li>durability: ${dataSuperHero.powerstats.durability}</li>                           
-                                        <li>power: ${dataSuperHero.powerstats.power}</li>                           
-                                        <li>combat: ${dataSuperHero.powerstats.combat}</li>   
+                                        <li>Intelligence: ${inteligencia}</li>
+                                        <li>Strength: ${fuerza}</li>                           
+                                        <li>speed: ${velocidad}</li>                           
+                                        <li>durability: ${resistencia}</li>                           
+                                        <li>power: ${poder}</li>                           
+                                        <li>combat: ${combate}</li>   
                                     </ul>
                                 <p class="fw-bold" >Work:</p> 
                                     <ul>
@@ -73,15 +84,17 @@ $(function () {
                             </div>
                         </div>
                     `);
+
                     //grafico de pastel
                     const superPowerstats = [
-                        { y: parseInt(dataSuperHero.powerstats.intelligence), name: "Intelligence" },
-                        { y: parseInt(dataSuperHero.powerstats.strength), name: "Strength" },
-                        { y: parseInt(dataSuperHero.powerstats.speed), name: "Speed" },
-                        { y: parseInt(dataSuperHero.powerstats.durability), name: "Durability" },
-                        { y: parseInt(dataSuperHero.powerstats.power), name: "Power" },
-                        { y: parseInt(dataSuperHero.powerstats.combat), name: "Combat" },
+                        { label: "Intelligence", y: parseInt(inteligencia), name: "Intelligence" },
+                        { label: "Strength", y: parseInt(fuerza), name: "Strength" },
+                        { label: "Speed", y: parseInt(velocidad), name: "Speed" },
+                        { label: "Durability", y: parseInt(resistencia), name: "Durability" },
+                        { label: "Power", y: parseInt(poder), name: "Power" },
+                        { label: "Combat", y: parseInt(combate), name: "Combat" },
                     ]
+
                     const chart = new CanvasJS.Chart("chartContainer", {
                         animationEnabled: true,
                         title: {
@@ -107,7 +120,5 @@ $(function () {
             alert("Ingrese un número de ID válido (entre 1 y 731).");
             inputSH.val('')
         }
-
     })
-
 });
